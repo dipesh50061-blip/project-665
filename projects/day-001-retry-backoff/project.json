@@ -1,0 +1,6 @@
+{
+  "day": 1,
+  "title": "Retry with exponential backoff",
+  "slug": "retry-backoff",
+  "status": "verified"
+}

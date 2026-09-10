@@ -1,0 +1,34 @@
+name: Publish daily Project 665 entry
+
+on:
+  schedule:
+    # 03:30 UTC = 09:00 IST (India has no daylight-saving changes).
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate and verify the next project
+        run: python scripts/generate_daily_project.py
+      - name: Commit the verified entry
+        run: |
+          if git diff --quiet; then
+            echo "No entry was generated."
+            exit 0
+          fi
+          git config user.name "project-665-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md projects
+          git commit -m "feat(day): publish daily Project 665 entry"
+          git push
