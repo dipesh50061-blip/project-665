@@ -16,6 +16,7 @@ Each daily project lives in `projects/day-XXX-<topic>/` and contains:
 | Day | Project | Status |
 | --- | --- | --- |
 | 001 | Retry with exponential backoff | Ready |
+| 002 | Expense tracker | Ready |
 
 ## Daily publishing
 
